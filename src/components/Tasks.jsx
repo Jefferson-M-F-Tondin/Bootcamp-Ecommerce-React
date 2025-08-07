@@ -1,4 +1,4 @@
-import { ChevronRightIcon, Trash } from "lucide-react";
+import { CheckIcon, ChevronRightIcon, Trash } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import Button from "./Button";
 
@@ -8,7 +8,7 @@ function Tasks({ tasks, onTaskClick, onDeleteTaskClick }) {
 
   // Função para navegar para a página de detalhes da tarefa
   // Passa o título e a descrição da tarefa como parâmetros de consulta na URL
-//   onSeeDetailsClick é uma função que recebe uma tarefa como parâmetro e usa o useNavigate para navegar para a página de detalhes da tarefa, passando o título e a descrição como parâmetros de consulta na URL.
+  //   onSeeDetailsClick é uma função que recebe uma tarefa como parâmetro e usa o useNavigate para navegar para a página de detalhes da tarefa, passando o título e a descrição como parâmetros de consulta na URL.
   function onSeeDetailsClick(task) {
     // Cria uma instância do objeto URLSearchParams para construir a query string
     // O URLSearchParams é usado para manipular os parâmetros de consulta da URL.
@@ -26,23 +26,18 @@ function Tasks({ tasks, onTaskClick, onDeleteTaskClick }) {
         <li key={task.id} className="flex gap-2">
           <button
             onClick={() => onTaskClick(task.id)}
-            className={`bg-slate-400 text-left w-full text-white p-2 rounded-md ${
+            className={`bg-slate-400 text-left w-full flex items-center gap-2 text-white p-2 rounded-md ${
               task.isCompleted && "line-through"
             }`}
           >
+            {task.isCompleted && <CheckIcon />}
             {task.title}
           </button>
-          <Button
-            onClick={() => onSeeDetailsClick(task)}
-            
-          >
+          <Button onClick={() => onSeeDetailsClick(task)}>
             <ChevronRightIcon />
           </Button>
 
-          <Button
-            onClick={() => onDeleteTaskClick(task.id)}
-            
-          >
+          <Button onClick={() => onDeleteTaskClick(task.id)}>
             <Trash />
           </Button>
         </li>
